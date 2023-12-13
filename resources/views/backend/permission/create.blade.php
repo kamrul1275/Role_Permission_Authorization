@@ -10,26 +10,11 @@
             @csrf
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="name" name="permission_name" class="form-control" id="name" >
+              <input type="name" name="name" class="form-control" id="name" >
              
             </div>
 
-            <div class="mb-3">
-              <select  id="role_id" name="role_id">
-
-                @foreach ($roles as $data)
-                  
-        
-                <option value="{{ $data->id }}" name="role_id">
-                  {{ $data->roll_name}}
-                </option>
-
-
-                @endforeach
-                
-              </select>
-             
-            </div>
+      
            
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

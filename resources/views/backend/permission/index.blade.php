@@ -22,9 +22,8 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Role</th>
-    
+                <th scope="col">Permission Name</th>
+              
                 <th scope="col">Handle</th>
               </tr>
             </thead>
@@ -34,8 +33,8 @@
               @foreach ($permissions as $key=> $data)
               <tr>
                   <th scope="row">{{$key+1}}</th>
-                  <td>{{ $data->permission_name }}</td>
-                  <td>  <span class="badge bg-danger">{{ $data->role->roll_name ?? ''}}</span>  </td>
+                  <td>{{ $data->name }}</td>
+                
                   <td>
 
                       <a href="" class="btn btn-success">Edit</a>

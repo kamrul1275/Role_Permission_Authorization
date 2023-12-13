@@ -9,8 +9,30 @@
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="name" name="name" class="form-control" id="name">
-
                 </div>
+
+                <div class="mt-4">
+
+                    <select name="permissions[]" id="">
+                        <option value="view">view</option>
+                        <option value="create">create</option>
+                        <option value="delete">delete</option>
+        
+                    </select>
+        
+                </div>
+        
+
+                {{-- <div class="mt-4">
+
+                    <select name="permission_id" id="">
+                        <option value="view">view</option>
+                        <option value="create">create</option>
+                        <option value="delete">delete</option>
+        
+                    </select>
+        
+                </div> --}}
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

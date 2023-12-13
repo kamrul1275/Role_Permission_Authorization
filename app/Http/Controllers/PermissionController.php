@@ -19,6 +19,8 @@ class PermissionController extends Controller
        
         $roles = Role::get();
 
+        //dd($roles);
+
         return view('backend.permission.create',compact('roles'));
     }//end method
 
@@ -31,11 +33,6 @@ class PermissionController extends Controller
  
         $permissions->name = $request->name;
 
-        
-
-        //dd($request->role_id);
-
-        $permissions->role_id = $request->role_id;
         //return $permissions;
         $permissions->save();
  

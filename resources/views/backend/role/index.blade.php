@@ -5,8 +5,6 @@
         <a href="{{ route('role.create') }}" class="btn btn-info mt-3 py-2">Create Role</a>
 
         <div class="row">
-
-
             {{-- error start --}}
             @if (Session::has('msg'))
                 <h3 class="text-danger">{{ Session::get('msg') }}</h3>
@@ -18,44 +16,29 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Permission</th>
-
+                        <th scope="col">Role Name</th>
                         <th scope="col">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
-
 
                     @foreach ($roles as $key => $data)
                         <tr>
                             <td scope="row"> {{ $key + 1 }} </td>
                             <td>{{ $data->name }}</td>
 
-
-{{-- 
-                            <td>
-                            @foreach ($data->permission as $iteam)
-                                <span class="badge bg-success">{{ $iteam->permission_name ?? '' }}</span> 
-                            @endforeach
-
-                            </td> --}}
-
                             <td>
                                 <a href="" class="btn btn-success">Edit</a>
                                 <a href="{{ url('/role/delete/' . $data->id) }}" class="btn btn-danger">delete</a>
                             </td>
-
                         </tr>
                     @endforeach
-
 
                 </tbody>
             </table>
 
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">

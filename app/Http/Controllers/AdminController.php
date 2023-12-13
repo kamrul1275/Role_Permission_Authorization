@@ -22,6 +22,10 @@ class AdminController extends Controller
         'password' => 'required',
     ]);
 
+
+
+    //dd($request->all());
+
     $request->session()->regenerate();
 
     //dd($request->session()->regenerate());

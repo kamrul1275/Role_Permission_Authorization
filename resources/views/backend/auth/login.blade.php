@@ -142,7 +142,7 @@ button{
     <form action="{{ route('admin.login.post')}}" method="POST">
 
         @csrf
-        <h3>Login Here</h3>
+        <h3>Login Here..</h3>
 
         <label for="username">Username</label>
         <input type="text" placeholder="Email or Phone" name="email"  id="username">
@@ -151,6 +151,7 @@ button{
         <input type="password" placeholder="Password"  name="password"  id="password">
 
         <button>Log In</button>
+        <a href="">Button</a>
         <div class="social">
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
