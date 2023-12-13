@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+
 use Illuminate\Http\Request;
+
+use App\Models\Role; // Make sure to import your User model
+use App\Models\Permission; // Import your Permission model
+
 
 class RoleController extends Controller
 {
@@ -23,45 +27,38 @@ class RoleController extends Controller
     } //end method
 
 
+
     function Store(Request $request)
     {
-        // $roles = new Role();
-        // $roles->name = $request->name;
 
-        // //dd($request->permission_id);
-        // $roles->permission_id = $request->permission_id;
+       $user= Role::create([
+            'name' => $request->name,
 
-        // //dd($roles);
-        // $roles->save();
+        ]);
+        $post_users = $request->input('permissions');
+//dd($post_users );
+//$post_users = $request->input('roles');
 
-        $data = $request->all();
+if ($post_users !== null) {
+    $permissions = [];
+    foreach ($post_users as $key => $val) {
+        $permissions[intval($val)] = intval($val);
+    }
 
-        $user = $this->create($data);
+    $user->permissions()->sync($permissions);
 
-         $post_users = $request->input('permissions');
-
-        //dd( $post_users);
-
-        if ($post_users !== null) {
-            $permissions = [];
-            foreach ($post_users as $key => $val) {
-                $permissions[intval($val)] = intval($val);
-            }
-
-            $user->permissions()->sync($permissions);
-
-
-          dd($user);
+        return redirect()->back();
+    }
 
 
 
-    
-        return redirect('/role');
-    } //end method
+
+
+    }
 
 
 
-}
+
     function Delete($id)
     {
         $data = Role::find($id);
@@ -69,4 +66,5 @@ class RoleController extends Controller
         return redirect()->back()->with('msg', 'delete.....!');
     } //end method
 
-    }
+
+}

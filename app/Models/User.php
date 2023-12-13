@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use App\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -44,16 +45,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function role() {
         return $this->belongsTo(Role::class);
     }
 
-    public function permissions() {
-        if ($this->role) {
-
-            return $this->role->permissions->pluck('name');
-        }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'role_permission');
     }
 
     public function hasAccess($access) {
