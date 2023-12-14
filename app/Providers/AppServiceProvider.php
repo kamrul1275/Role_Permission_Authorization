@@ -20,14 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('view', function ($user) {
-            return $user;
-        });
+        // Gate::define('view', function ($user) {
+        //     return $user;
+        // });
 
 
-        Gate::define('edit', function ($user) {
-            return $user;
-        });
+        // Gate::define('edit', function ($user) {
+        //     return $user;
+        // });
 
 
     }

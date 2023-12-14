@@ -14,9 +14,11 @@
                 <div class="mt-4">
 
                     <select name="permissions[]" id="">
-                        <option value="1">view</option>
-                        <option value="2">create</option>
-                        <option value="3">delete</option>
+
+                        @foreach ($permissions as $permission)
+                        <option value="{{$permission->id}}">{{$permission->name}}</option>
+                        @endforeach
+                       
 
                     </select>
 

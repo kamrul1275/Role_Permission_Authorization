@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -9,6 +10,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,24 +27,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+// Route::get('/dashboard', function () {
 
   
- 
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
-// test
-Route::get('/edit/test', function () {
 
-    Gate::authorize('edit','user');
-   
 
-    return view('test.edit');
 
-});
+
+
+
+
+Route::get('/dashboard',[HomeController::class,'Dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 
 Route::middleware('auth')->group(function () {

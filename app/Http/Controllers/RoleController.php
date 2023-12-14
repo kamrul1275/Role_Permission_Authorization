@@ -4,26 +4,42 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-
-use App\Models\Role; // Make sure to import your User model
+use Illuminate\Support\Facades\Gate;
+use App\Models\Role; 
+use App\Models\User;
 use App\Models\Permission; // Import your Permission model
-
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
     function Index()
     {
-        $roles = Role::latest()->get();
+        $roles = Role::with('user')->latest()->get();
+
+        //return  $roles;
+
+        if (! Gate::allows('view', $roles)) {
+            abort(403);
+        }
+ 
+        return view('backend.role.index', compact('roles'));
+    }
+
+        // Gate::authorize('view','roles');
+        // $roles = Role::latest()->get();
 
         //return $roles;
 
-        return view('backend.role.index', compact('roles'));
-    } //end method
+       
+     //end method
 
 
     function Create()
     {
-        return view('backend.role.create');
+
+
+        $permissions = Permission::latest()->get();
+        return view('backend.role.create',compact('permissions'));
     } //end method
 
 
@@ -33,8 +49,11 @@ class RoleController extends Controller
 
        $user= Role::create([
             'name' => $request->name,
+           
 
         ]);
+
+        //dd($user);
         $post_users = $request->input('permissions');
 //dd($post_users );
 //$post_users = $request->input('roles');
@@ -61,8 +80,23 @@ if ($post_users !== null) {
 
     function Delete($id)
     {
+
+
+
+  
+
+
         $data = Role::find($id);
         $data->delete();
+
+
+        if (! Gate::allows('delete', $data)) {
+            abort(403);
+        }
+ 
+
+
+
         return redirect()->back()->with('msg', 'delete.....!');
     } //end method
 

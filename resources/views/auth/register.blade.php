@@ -18,6 +18,14 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <select name="role_id" id="">
+                <option value="1">Creater</option>
+                <option value="2">Admin</option>
+                <option value="3">Maneger</option>
+            </select>
+        </div>
+
 
 
         <!-- Password -->

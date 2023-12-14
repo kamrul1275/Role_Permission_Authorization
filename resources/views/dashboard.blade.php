@@ -12,6 +12,18 @@
   <a href="{{ route('role.create')}}">Create Role</a>
 
 
+
+  @can('admin', auth()->user())
+<h2>hello Admin</h2>
+@endcan
+
+
+@can('maneger', auth()->user())
+<h2>edit.........</h2>
+@endcan
+
+
+
   <table class="table">
         <thead>
           <tr>

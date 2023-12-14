@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Permission;
+
 class Role extends Model
 {
     use HasFactory;
@@ -12,11 +14,13 @@ class Role extends Model
 
     protected $guarded=[];
 
+    
+
 
  // Inside Role model
 public function permissions()
 {
-    return $this->belongsToMany(Permission::class, 'role_permission');
+    return $this->belongsToMany(Permission::class,'role_permission');
 }
 
 

@@ -11,31 +11,45 @@
             @endif
 
             {{-- error end --}}
+@can('view',$roles)
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Role Name</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Role Name</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
 
-                    @foreach ($roles as $key => $data)
-                        <tr>
-                            <td scope="row"> {{ $key + 1 }} </td>
-                            <td>{{ $data->name }}</td>
+        @foreach ($roles as $key => $data)
+            <tr>
+                <td scope="row"> {{ $key + 1 }} </td>
+                <td> <span class="badge bg-danger">{{ $data->name }} </span> </td>
+                <td>{{ $data->user->name }}</td>
 
-                            <td>
-                                <a href="" class="btn btn-success">Edit</a>
-                                <a href="{{ url('/role/delete/' . $data->id) }}" class="btn btn-danger">delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                <td>
+                    <a href="" class="btn btn-success">Edit</a>
 
-                </tbody>
-            </table>
+                    @can('view',$roles)
+  
+  <a href="{{ url('/role/delete/' . $data->id) }}" class="btn btn-danger">delete</a>
+ 
+  @endcan
+                   
+                </td>
+            </tr>
+        @endforeach
+
+    </tbody>
+</table>
+    
+@endcan
+
+
+          
 
         </div>
     </div>

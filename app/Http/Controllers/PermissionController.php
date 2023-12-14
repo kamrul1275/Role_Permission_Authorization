@@ -10,7 +10,9 @@ class PermissionController extends Controller
 {
     function Index(){
        
-        $permissions = Permission::get();
+        $permissions = Permission::latest()->get();
+
+        //return $permissions;
         return view('backend.permission.index',compact('permissions'));
     }//end method
 
