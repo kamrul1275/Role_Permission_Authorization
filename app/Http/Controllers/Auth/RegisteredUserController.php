@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -48,6 +49,17 @@ class RegisteredUserController extends Controller
         ]);
 
         //dd($user);
+
+
+        // Get the 'Admin' role
+$adminRole = Role::where('name', 'Admin')->first();
+
+//dd($adminRole);
+// Attach the 'Admin' role to the user
+$user->roles()->attach($adminRole);
+
+//dd($user);
+
 
         event(new Registered($user));
 

@@ -4,21 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
-    function Dashboard(){
+    function Dashboard()
+    {
 
-        $users = User::with('role')->latest()->get();
+        $user = User::with('role')->latest()->get();
+        $posts = Post::latest()->get();
+        
+        ///return  $users;
+        //$users = U::latest()->get();
 
-        //return  $users;
-       
-           if (!Gate::allows('admin', auth()->user())) {
-               return "Error";
-           }
-       
-
-        return view('dashboard');
+        return view('dashboard',compact('posts','user'));// end metho
+      
     }
+
+
+
+function CreateGate(){
+
+
+    
+    return "Create form";
+}
+
+
+
+
+
+
+
 }

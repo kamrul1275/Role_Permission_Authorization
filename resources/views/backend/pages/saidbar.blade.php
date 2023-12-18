@@ -60,7 +60,7 @@
             <ul>
                <li> <a href="{{route('role.create') }}"><i class="bx bx-right-arrow-alt"></i>Create Role </a>
                 </li>
-                <li> <a href="{{route('role.index') }}"><i class="bx bx-right-arrow-alt"></i> All Role</a>
+                <li> <a href="{{route('role.index.all') }}"><i class="bx bx-right-arrow-alt"></i> All Role</a>
                 </li> 
               
                

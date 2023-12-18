@@ -1,5 +1,6 @@
 @extends('backend.layout.master')
 @section('content')
+
     <div class="container">
 
         <a href="{{ route('role.create') }}" class="btn btn-info mt-3 py-2">Create Role</a>
@@ -11,7 +12,7 @@
             @endif
 
             {{-- error end --}}
-@can('view',$roles)
+
 
 <table class="table">
     <thead>
@@ -28,17 +29,16 @@
             <tr>
                 <td scope="row"> {{ $key + 1 }} </td>
                 <td> <span class="badge bg-danger">{{ $data->name }} </span> </td>
-                <td>{{ $data->user->name }}</td>
+                <td>{{ $data->user->name ?? ''}}</td>
 
                 <td>
                     <a href="" class="btn btn-success">Edit</a>
 
-                    @can('view',$roles)
+                 
   
   <a href="{{ url('/role/delete/' . $data->id) }}" class="btn btn-danger">delete</a>
  
-  @endcan
-                   
+                  
                 </td>
             </tr>
         @endforeach
@@ -46,7 +46,7 @@
     </tbody>
 </table>
     
-@endcan
+
 
 
           

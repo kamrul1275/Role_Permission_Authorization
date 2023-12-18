@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Models\Role_Permission;
@@ -40,13 +41,9 @@ Route::get('/', function () {
 
 
 
-
-
-
-
 Route::get('/dashboard',[HomeController::class,'Dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('/gate/create',[HomeController::class,'CreateGate'])->name('create.gate');
 
 
 Route::middleware('auth')->group(function () {
@@ -87,8 +84,19 @@ Route::middleware('backend')->group( function(){
     
     
        //Role part...
-       Route::get('/role', [RoleController::class, 'Index'])->name('role.index');
+       Route::get('/role/all', [RoleController::class, 'RoleIndex'])->name('role.index.all');
        Route::get('/role/delete/{id}', [RoleController::class, 'Delete'])->name('role.delete');
+
+
+// gate method ,,,
+
+
+       Route::get('/gate',[RoleController::class,'indexx'])->name('index.gate');
+
+
+
+
+
        //permission....
        Route::get('/permission', [PermissionController::class, 'Index'])->name('permission.index');
     
@@ -105,6 +113,25 @@ Route::middleware('backend')->group( function(){
        Route::get('/permission/create', [PermissionController::class, 'PermissionCreate'])->name('permission.create');
        Route::get('/permission/edit', [PermissionController::class, 'permissionEdit'])->name('permission.edit');
        Route::get('/permission/delete', [PermissionController::class, 'permissionDelete'])->name('permission.delete');
+
+
+// post part
+
+
+Route::get('/all/post',[PostController::class,'IndexPost'])->name('index.post');
+
+Route::get('/create/post',[PostController::class,'createPost'])->name('create.post');
+
+Route::post('/store/post',[PostController::class,'storePost'])->name('store.post');
+
+
+
+Route::get('/edit/post/{id}',[PostController::class,'editPost'])->name('edit.post');
+
+Route::get('/delete/post/{post}',[PostController::class,'destroy'])->name('delete.post');
+
+
+
 
 
 
