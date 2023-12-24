@@ -7,12 +7,15 @@
             <div class="col-md-12">
 
 
-               <a href="{{ route('create.post')}}">Create Post</a> 
+                
+
+
+                <a href="{{ route('create.post') }}" class="btn btn-success">Create Post</a>
 
 
                 @can('view')
-                <ul>
-                  
+                    <ul>
+
                         <div class="container">
                             View part
                             <div class="row">
@@ -40,18 +43,19 @@
                                                             <a href="{{ route('show.post', $post) }}" class="btn btn-info">Edit</a>
                                                         @endcan --}}
                                                         {{-- <a href="{{ route('edit.post', $post) }}" class="btn btn-success">Edit</a> --}}
-                                                      
 
-                                                      
-                                                        <a href="{{ route('delete.post', $post->id) }}" class="btn btn-danger">Delete</a>
-                                                   
-                                                     
 
-                                                      
-{{-- @dd(dd(auth()->user()->roles)) --}}
 
- {{-- //@dd($user->roles->pluck('name'));  --}}
-                                    
+                                                        <a href="{{ route('delete.post', $post->id) }}"
+                                                            class="btn btn-danger">Delete</a>
+
+
+
+
+                                                        {{-- @dd(dd(auth()->user()->roles)) --}}
+
+                                                        {{-- //@dd($user->roles->pluck('name'));  --}}
+
                                                     </td>
                                                 </tr>
                                             @endforeach

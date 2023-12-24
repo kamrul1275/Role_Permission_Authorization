@@ -95,6 +95,19 @@ class RoleController extends Controller
     }//end method
 
 
+//     public function example() {
+//         $result = isPermission('Hello, World!');
+// dd($result);
+
+
+//         //return view('example', ['result' => $result]);
+//     }
+
+
+
+
+
+
 
 
 }
