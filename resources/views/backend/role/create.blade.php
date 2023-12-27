@@ -13,28 +13,18 @@
 
                 <div class="mt-4">
 
-                    <select name="permissions[]" id="">
 
-                        @foreach ($permissions as $permission)
-                        <option value="{{$permission->id}}">{{$permission->name}}</option>
-                        @endforeach
-                       
+                    @foreach ($permissions as $permission)
+                    <div class="form-check">
+                        <input class="form-check-input" name="permissions[]" type="checkbox" value="{{ $permission->id }}" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{$permission->name}}
+                        </label>
+                      </div>
 
-                    </select>
+                      @endforeach
 
                 </div>
-
-
-                {{-- <div class="mt-4">
-
-                    <select name="permission_id" id="">
-                        <option value="view">view</option>
-                        <option value="create">create</option>
-                        <option value="delete">delete</option>
-
-                    </select>
-
-                </div> --}}
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

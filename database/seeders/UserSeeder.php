@@ -16,28 +16,19 @@ class UserSeeder extends Seeder
     {
         User::insert([
 
-            [
-                'name' => 'user',
-                'email' => 'user@gmail.com',
-                'password' => Hash::make('password'),
 
-            ],
 
             [
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('password'),
-               
+                
+
 
             ],
 
 
-            [
-                'name' => 'kamrul',
-                'email' => 'kamrul@gmail.com',
-                'password' => Hash::make('password'),
 
-            ],
 
 
         ]);

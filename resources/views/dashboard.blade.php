@@ -6,6 +6,10 @@
         <div class="row">
             <div class="col-md-12">
 
+                @if(in_array('create', $userPermissions))
+                <!-- Show content only if the user has 'create_post' permission -->
+                <a href="{{ route('create.post') }}" class="btn btn-primary">Create</a>
+            @endif
 
 
 @if(in_array('view', $userPermissions))
@@ -41,7 +45,7 @@
 {{-- edit part --}}
 @if(in_array('edit', $userPermissions))
     <!-- Show content only if the user has 'create_post' permission -->
-    <a href="{{ route('edit.post',$post->id) }}" class="btn btn-success">Edit post</a>
+    <a href="{{ route('edit.post',$post->id) }}" class="btn btn-success">Edit</a>
 @endif
 
 
