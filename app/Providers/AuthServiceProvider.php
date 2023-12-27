@@ -27,90 +27,50 @@ class AuthServiceProvider extends ServiceProvider
      * Register any authentication / authorization services.
      */
 
-
-
-
     public function boot(): void
     {
 
-
         $this->registerPolicies();
 
-        view()->composer('*', function () {
+
+
+
+        view()->composer('*', function ($view) {
             if (Auth::guard('web')->check()) {
-                $user =Auth::guard('web')->user();
-               // logger($users);
+                $userinfo = Auth::guard('web')->user();
 
-                //return $users;
-                //dd($users);
-               // $permission = User::with('role')->where('name',$users)->get();
-                //dd($permission);
-                dd($user->role->toarray());
-               
-            
-                ///dd($permissions); $permissions;
+                $user = $userinfo->role->name;
+                //dd($user);
 
-                $permissions = [];
+               $permissions = $userinfo->role->permissions->pluck('name')->toArray();
+               // $permissions = $userinfo->role->permissions->toArray();
+                //dd($permissions);
 
-                foreach ($permissions as $key => $permission) {
-                    Gate::define($permission->name, function (User $user) {
+                $view->with('userPermissions', $permissions);
 
-                        return true;
-                    });
-                }
+            //   $permissions = $userinfo->role->permissions->toArray();
+
+                // dd($permissions);
+            //    $permissions = [];
+            //    foreach ($permissions as $permission) {
+
+
+            //         Gate::define($permission->name, function (User $user) {
+            //             return true;
+            //         });
+
+
+
+            //     }
             }
         });
 
 
-
-
-
-        // if (Auth::check()) {
-        //     // User is logged in, so it's safe to access properties
-        //     $user_id = Auth::user()->name;
-        //     dd($user_id);
-        // }else{
-        //     dd('Eorre working..');
-        // }
-
-
-
-
-
-
-
-
-        // Gate::define('isAdmin', function (User $user) {
-        //     // Assuming 'role' is a relationship on the User model
-        //     $role = $user->role;
-        //    // return  $role;
-        //    //dd($role && $role->name == 'Admin');
-        //     return $role && $role->name == 'Admin';
-        // });
-
-
-        // Gate::define('isManager', function (User $user) {
-        //     // Assuming 'role' is a relationship on the User model
-        //     $role = $user->role;
-        //     return $role && $role->name == 'Manager';
-        // });
-
-
-
-        // Gate::define('isCreator', function (User $user) {
-        //     // Assuming 'role' is a relationship on the User model
-        //     $role = $user->role;
-        //     return $role && $role->name == 'Creator';
-        // });
-
-
-
         Gate::define('create', function (User $user) {
-            // Assuming 'role' is a relationship on the User model
+
             $role = $user->role;
-            // return  $role;
-            //dd($role && $role->name == 'Admin');
-            return $role && ($role->name == 'Creator');
+            //dd($role && $role->name == 'creator');
+            return $role && ($role->name == $user->role['name']);
         });
 
 
@@ -119,24 +79,23 @@ class AuthServiceProvider extends ServiceProvider
             // Assuming 'role' is a relationship on the User model
             $role = $user->role;
             // return  $role;
-            //dd($role && $role->name == 'Admin');
-            return $role && ($role->name == 'Admin' || $role->name == 'Creator');
+            //dd($role && $role->name == 'Admin','Manager);
+            return $role && ($role->name == $user->role['name'] || $role->name == $user->role['name']);
         });
 
+
+
         Gate::define('view', function (User $user) {
-            // Assuming 'role' is a relationship on the User model
+
+            // all role
             $role = $user->role;
-            // return  $role;
-            //dd($role && $role->name == 'Admin');
-            return $role && ($role->name == 'Admin' || $role->name == 'Manager' ||  $role->name == 'Creator');
+            return $role && ($role->name == $user->role['name'] || $role->name == $user->role['name'] || $role->name == $user->role['name']);
         });
 
         Gate::define('delete', function (User $user) {
-            // Assuming 'role' is a relationship on the User model
             $role = $user->role;
-            // return  $role;
             //dd($role && $role->name == 'Admin');
-            return $role && ($role->name == 'Admin');
+            return $role && ($role->name == $user->role['name']);
         });
     }
 }

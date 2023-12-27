@@ -21,10 +21,15 @@
         <div class="mt-4">
             <select name="role_id" id="">
 
-                <option value="1">Admin</option>
-                <option value="2">Maneger</option>
-                <option value="3">Creater</option>
-               
+
+                @foreach ($roles as $role)
+                <option value="{{ $role->id}}">{{ $role->name }}</option>
+                @endforeach
+
+                {{-- <option value="1">Admin</option>
+                <option value="2">Manager</option>
+                <option value="3">Creator</option> --}}
+
             </select>
         </div>
 
