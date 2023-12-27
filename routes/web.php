@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 // Route::get('/dashboard', function () {
 
-  
+
 
 
 //     return view('dashboard');
@@ -61,28 +61,28 @@ require __DIR__.'/auth.php';
 
 Route::get('/admin/login', [AdminController::class, 'adminLogin'])->name('admin.login');
 Route::post('post-login', [AdminController::class, 'AdminPostLogin'])->name('admin.login.post');
-    
+
 
 Route::middleware('backend')->group( function(){
 
 
-  
-    
+
+
     //Route::post('/admin/login',[AdminController::class,'AdminLogin']);
     Route::get('/admin/logout', [AdminController::class, 'Adminlogout'])->name('admin.logout');
     Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
-    
-    
-    
-    
+
+
+
+
        // Role part...
        Route::get('/role/create', [RoleController::class, 'Create'])->name('role.create');
        Route::post('/role/store', [RoleController::class, 'Store'])->name('role.store');
-    
-    
-    
-    
-    
+
+
+
+
+
        //Role part...
        Route::get('/role/all', [RoleController::class, 'RoleIndex'])->name('role.index.all');
        Route::get('/role/delete/{id}', [RoleController::class, 'Delete'])->name('role.delete');
@@ -99,16 +99,16 @@ Route::middleware('backend')->group( function(){
 
        //permission....
        Route::get('/permission', [PermissionController::class, 'Index'])->name('permission.index');
-    
-    
+
+
        // permission part
-    
+
        Route::get('/permission/create/role', [PermissionController::class, 'CreatePermission'])->name('create.permission.role');
-    
+
        Route::post('/permission/store', [PermissionController::class, 'Store'])->name('permission.store');
        Route::get('/permission/delete/{id}', [PermissionController::class, 'Delete'])->name('permission.delete');
-    
-    
+
+
        Route::get('/permission/view', [PermissionController::class, 'permissionView'])->name('permission.view');
        Route::get('/permission/create', [PermissionController::class, 'PermissionCreate'])->name('permission.create');
        Route::get('/permission/edit', [PermissionController::class, 'permissionEdit'])->name('permission.edit');
@@ -127,6 +127,7 @@ Route::post('/store/post',[PostController::class,'storePost'])->name('store.post
 
 
 Route::get('/edit/post/{id}',[PostController::class,'editPost'])->name('edit.post');
+
 
 Route::get('/delete/post/{post}',[PostController::class,'destroy'])->name('delete.post');
 

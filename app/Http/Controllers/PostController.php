@@ -24,7 +24,7 @@ class PostController extends Controller
 function createPost(){
 
 
-$this->authorize('create', Auth::user());
+$this->authorize('create');
 return view('posts.create');
 
 }
@@ -37,7 +37,7 @@ function storePost(){
 
     function editPost(Post $post, $id)
     {
-        $this->authorize('delete', $post);
+        $this->authorize('edit', $post);
         $posts = Post::find($id);
 
         return $posts;
@@ -49,14 +49,14 @@ function storePost(){
 
     public function destroy(Request $request, Post $post)
     {
-        
+
         // dd($post->id);
-        
-        $this->authorize('delete', Auth::user());
-    
+
+        $this->authorize('delete');
+
         $post->delete();
 
-    
+
         return redirect()->back();
 
     }// end of the method
